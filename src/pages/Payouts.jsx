@@ -108,10 +108,10 @@ const Payouts = () => {
                 <button
                     onClick={() => refetch()}
                     disabled={isSyncing}
-                    className="flex items-center gap-2 px-6 py-3 bg-black text-white rounded-2xl text-[10px] font-black uppercase transition-all shadow-lg hover:shadow-black/20 disabled:opacity-50"
+                    className="flex items-center gap-2 px-6 py-3 bg-[#B7410E] hover:bg-[#943209] text-white rounded-2xl shadow-md shadow-[#B7410E]/20 text-[10px] font-black uppercase transition-all shadow-lg hover:shadow-[#B7410E]/25 disabled:opacity-50"
                 >
                     <RefreshCw className={`w-4 h-4 ${isSyncing ? 'animate-spin' : ''}`} />
-                    {isSyncing ? 'Syncing...' : 'Sync Treasury'}
+                    {isSyncing ? 'Syncing...' : 'Refresh'}
                 </button>
             </div>
 
@@ -178,7 +178,7 @@ const Payouts = () => {
                                             <td className="px-8 py-6 text-right">
                                                 <button
                                                     onClick={() => handleInitiatePayout(rider)}
-                                                    className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all hover:bg-bakery-primary shadow-xl shadow-black/10 disabled:opacity-50 group/btn active:scale-95"
+                                                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#B7410E] hover:bg-[#943209] text-white rounded-2xl shadow-md shadow-[#B7410E]/20 text-[10px] font-black uppercase tracking-widest transition-all hover:bg-bakery-primary shadow-xl shadow-[#B7410E]/20 disabled:opacity-50 group/btn active:scale-95"
                                                 >
                                                     <IndianRupee className="w-4 h-4" />
                                                     Pay <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -230,7 +230,7 @@ const Payouts = () => {
                                     value={payoutReference}
                                     onChange={(e) => setPayoutReference(e.target.value)}
                                     placeholder="Enter bank transaction ID..."
-                                    className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl font-bold text-gray-900 focus:outline-none focus:border-black focus:ring-0 transition-all placeholder:text-gray-300"
+                                    className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl font-bold text-gray-900 focus:outline-none focus:border-[#B7410E] focus:ring-0 transition-all placeholder:text-gray-300"
                                 />
                             </div>
 
@@ -244,7 +244,7 @@ const Payouts = () => {
                                 <button
                                     onClick={handleConfirmPayout}
                                     disabled={isConfirming || !payoutReference.trim()}
-                                    className="flex-1 py-4 bg-black text-white rounded-2xl font-bold hover:bg-gray-900 transition-all shadow-xl shadow-black/10 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                    className="flex-1 py-4 bg-[#B7410E] hover:bg-[#943209] text-white rounded-2xl shadow-md shadow-[#B7410E]/20 font-bold hover:bg-gray-900 transition-all shadow-xl shadow-[#B7410E]/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                 >
                                     {isConfirming ? (
                                         <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>

@@ -138,14 +138,14 @@ const GeneralSettings = () => {
             {/* Storefront Visibility & Ordering Toggle */}
             <div className={`rounded-[2.5rem] p-8 border transition-all duration-300 ${
                 isLittleHActive 
-                    ? 'bg-gradient-to-r from-emerald-50/70 to-teal-50/70 border-emerald-200 shadow-sm' 
+                    ? 'bg-gradient-to-r from-[#FDF6F3] to-[#FBEAE2] border-[#F7D5C5] shadow-sm' 
                     : 'bg-gradient-to-r from-rose-50/70 to-amber-50/70 border-rose-200 shadow-sm'
             }`}>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                     <div className="flex items-center gap-5">
                         <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border shadow-sm transition-colors ${
                             isLittleHActive
-                                ? 'bg-emerald-500 text-white border-emerald-400 shadow-emerald-500/20'
+                                ? 'bg-[#B7410E] text-white border-[#B7410E] shadow-[#B7410E]/20'
                                 : 'bg-rose-500 text-white border-rose-400 shadow-rose-500/20'
                         }`}>
                             <Power className="w-7 h-7" />
@@ -157,7 +157,7 @@ const GeneralSettings = () => {
                                 </h2>
                                 <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${
                                     isLittleHActive
-                                        ? 'bg-emerald-100 text-emerald-800'
+                                        ? 'bg-[#FBEAE2] text-[#742709]'
                                         : 'bg-rose-100 text-rose-800'
                                 }`}>
                                     {isLittleHActive ? '🟢 ONLINE & ACTIVE' : '🔴 OFFLINE / HIDDEN'}
@@ -177,7 +177,7 @@ const GeneralSettings = () => {
                         onClick={handleToggleStoreStatus}
                         className={`relative inline-flex h-11 w-20 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                             isLittleHActive 
-                                ? 'bg-emerald-600 focus:ring-emerald-500' 
+                                ? 'bg-[#B7410E] focus:ring-[#B7410E]' 
                                 : 'bg-gray-300 focus:ring-gray-400'
                         } ${togglingStatus ? 'opacity-60 cursor-not-allowed' : ''}`}
                     >
@@ -276,7 +276,7 @@ const GeneralSettings = () => {
                             name="gstRate"
                             value={settings.gstRate}
                             onChange={handleChange}
-                            className="w-full px-6 py-4 rounded-[1.2rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all font-black text-sm"
+                            className="w-full px-6 py-4 rounded-[1.2rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-[#B7410E]/15 focus:border-[#B7410E] transition-all font-black text-sm"
                         />
                     </div>
                     <div className="space-y-2">
@@ -286,7 +286,7 @@ const GeneralSettings = () => {
                             name="minOrderAmount"
                             value={settings.minOrderAmount}
                             onChange={handleChange}
-                            className="w-full px-6 py-4 rounded-[1.2rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all font-black text-sm"
+                            className="w-full px-6 py-4 rounded-[1.2rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-[#B7410E]/15 focus:border-[#B7410E] transition-all font-black text-sm"
                         />
                     </div>
                     <div className="col-span-full md:col-span-2 space-y-2">
@@ -296,7 +296,7 @@ const GeneralSettings = () => {
                             name="maxDeliveryDistance"
                             value={settings.maxDeliveryDistance}
                             onChange={handleChange}
-                            className="w-full px-6 py-4 rounded-[1.2rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all font-black text-sm"
+                            className="w-full px-6 py-4 rounded-[1.2rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-[#B7410E]/15 focus:border-[#B7410E] transition-all font-black text-sm"
                         />
                     </div>
                 </div>
@@ -323,7 +323,7 @@ const GeneralSettings = () => {
                             name="riderBaseEarning"
                             value={settings.riderBaseEarning}
                             onChange={handleChange}
-                            className="w-full px-6 py-4 rounded-[1.5rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all font-black text-sm"
+                            className="w-full px-6 py-4 rounded-[1.5rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-[#B7410E]/15 focus:border-[#B7410E] transition-all font-black text-sm"
                         />
                     </div>
                     <div className="space-y-2">
@@ -333,7 +333,7 @@ const GeneralSettings = () => {
                             name="distanceBonusPerKm"
                             value={settings.distanceBonusPerKm}
                             onChange={handleChange}
-                            className="w-full px-6 py-4 rounded-[1.5rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all font-black text-sm"
+                            className="w-full px-6 py-4 rounded-[1.5rem] border border-gray-100 bg-gray-50/30 focus:outline-none focus:ring-2 focus:ring-[#B7410E]/15 focus:border-[#B7410E] transition-all font-black text-sm"
                         />
                     </div>
                 </div>

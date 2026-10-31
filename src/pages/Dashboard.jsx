@@ -111,7 +111,7 @@ export default function Dashboard() {
                             <h2 className="text-sm sm:text-base font-black uppercase text-gray-900 tracking-tight">Recent Activity</h2>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Latest incoming orders</p>
                         </div>
-                        <button onClick={() => navigate(`/${urlBrand}/orders`)} className="p-3 bg-gray-50 rounded-2xl hover:bg-black hover:text-white transition-all"><ArrowRight className="w-5 h-5" /></button>
+                        <button onClick={() => navigate(`/${urlBrand}/orders`)} className="p-3 bg-gray-50 rounded-2xl hover:bg-[#B7410E] hover:text-white transition-all"><ArrowRight className="w-5 h-5" /></button>
                     </div>
                     <div className="space-y-4 flex-1">
                         {stats?.recentOrders?.length > 0 ? (
@@ -124,7 +124,7 @@ export default function Dashboard() {
                                         <div className="min-w-0 flex flex-col items-start text-left">
                                             <p className="font-black text-gray-900 uppercase text-sm">#{order.orderNumber}</p>
                                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-tight">{order.customerId?.name || 'Customer'} • ₹{order.total}</p>
-                                            <p className={`text-[8px] font-black uppercase tracking-widest mt-0.5 ${order.brand === 'littleh' ? 'text-pink-600' : 'text-bakery-primary'}`}>
+                                            <p className={`text-[8px] font-black uppercase tracking-widest mt-0.5 ${order.brand === 'littleh' ? 'text-bakery-primary' : 'text-bakery-primary'}`}>
                                                 {order.brand === 'littleh' ? 'LITTLEH' : 'TEAS N TREES'}
                                             </p>
                                         </div>
@@ -144,7 +144,7 @@ export default function Dashboard() {
                             <h2 className="text-sm sm:text-base font-black uppercase text-gray-900 tracking-tight">Best Sellers</h2>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Top performing products</p>
                         </div>
-                        <button onClick={() => navigate(`/${urlBrand}/products`)} className="p-3 bg-gray-50 rounded-2xl hover:bg-black hover:text-white transition-all"><TrendingUp className="w-5 h-5" /></button>
+                        <button onClick={() => navigate(`/${urlBrand}/products`)} className="p-3 bg-gray-50 rounded-2xl hover:bg-[#B7410E] hover:text-white transition-all"><TrendingUp className="w-5 h-5" /></button>
                     </div>
                     <div className="space-y-4 flex-1">
                         {stats?.topProducts?.length > 0 ? (

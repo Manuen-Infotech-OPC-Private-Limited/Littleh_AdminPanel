@@ -33,7 +33,7 @@ const CustomerCard = ({ customer, onViewDetails, onToggleStatus, onDelete }) => 
                 </div>
                 <div className="flex flex-col gap-1.5 items-end">
                     <span className={`px-2 py-1 rounded-md text-[8px] font-black uppercase ${customer.isActive ? 'bg-bakery-bg text-bakery-primary' : 'bg-red-50 text-red-600'}`}>
-                        {customer.isActive ? 'Active' : 'Banned'}
+                        {customer.isActive ? 'Active' : 'Inactive'}
                     </span>
                 </div>
             </div>

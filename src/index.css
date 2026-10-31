@@ -1,34 +1,50 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bakery-primary: #565A47;
-  --color-bakery-bg: #FAF1E8;
-  --color-bakery-light: #FDF5EC;
-  --color-bakery-accent: #8B8E7B;
+  --color-rust-50: #FDF6F3;
+  --color-rust-100: #FBEAE2;
+  --color-rust-200: #F7D5C5;
+  --color-rust-300: #F0B49B;
+  --color-rust-400: #E48762;
+  --color-rust-500: #D15E2D;
+  --color-rust-600: #B7410E;
+  --color-rust-700: #943209;
+  --color-rust-800: #742709;
+  --color-rust-900: #4B1905;
+  --color-rust-950: #2C0C02;
+  --color-rust: #B7410E;
+
+  --color-bakery-primary: #B7410E;
+  --color-bakery-dark: #742709;
+  --color-bakery-hover: #943209;
+  --color-bakery-bg: #FAF2EE;
+  --color-bakery-light: #FDF6F3;
+  --color-bakery-accent: #D15E2D;
+  --color-bakery-border: #F3DDD3;
   --font-playfair: "Playfair Display", serif;
 }
 
 @layer base {
   body {
-    @apply bg-bakery-bg text-bakery-primary;
+    @apply bg-bakery-bg text-stone-900;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-bakery-primary hover:bg-bakery-accent text-white font-medium py-2 px-4 rounded-lg transition-colors;
+    @apply bg-bakery-primary hover:bg-bakery-hover text-white font-black py-2.5 px-5 rounded-2xl shadow-lg shadow-[#B7410E]/20 transition-all;
   }
 
   .btn-secondary {
-    @apply bg-bakery-light hover:bg-bakery-bg text-bakery-primary font-medium py-2 px-4 rounded-lg transition-colors;
+    @apply bg-bakery-light hover:bg-[#FBEAE2] text-bakery-primary font-bold py-2.5 px-5 rounded-2xl border border-bakery-border transition-all;
   }
 
   .card {
-    @apply bg-white rounded-lg shadow-sm border border-bakery-light p-6;
+    @apply bg-white rounded-3xl shadow-xs border border-bakery-border p-6;
   }
 
   .input {
-    @apply w-full px-4 py-2 border border-bakery-accent rounded-lg focus:ring-2 focus:ring-bakery-primary focus:border-transparent outline-none;
+    @apply w-full px-4 py-2.5 border border-stone-200 rounded-2xl focus:ring-2 focus:ring-bakery-primary focus:border-transparent outline-none transition-all;
   }
 }
 
@@ -85,4 +101,75 @@
 
 .animate-shake {
   animation: shake 0.5s;
+}
+
+/* Completely hide all scrollbars globally across all browsers */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  -webkit-appearance: none !important;
+}
+
+::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  display: none !important;
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track {
+  display: none !important;
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-button,
+*::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  -webkit-appearance: none !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Remove black focus outlines and box lines on Recharts SVG and wrappers */
+.recharts-wrapper,
+.recharts-wrapper *,
+.recharts-surface,
+.recharts-surface:focus,
+.recharts-surface:focus-visible,
+svg.recharts-surface,
+svg.recharts-surface:focus,
+svg.recharts-surface:focus-visible,
+.recharts-responsive-container:focus,
+.recharts-responsive-container:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Remove grey/black background and stroke on Recharts bar hover */
+.recharts-tooltip-cursor,
+svg .recharts-tooltip-cursor {
+  fill: transparent !important;
+  stroke: transparent !important;
+  outline: none !important;
 }
