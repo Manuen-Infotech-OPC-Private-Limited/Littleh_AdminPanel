@@ -20,7 +20,7 @@ const UserCard = ({ user, onToggleStatus, onDelete, onViewDetails }) => {
     const isActive = user.isActive !== false;
 
     return (
-        <div className="bg-white rounded-[2rem] shadow-sm border-2 border-gray-50 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all group flex flex-col">
+        <div className="bg-white rounded-[2rem] shadow-sm border-2 border-gray-50 overflow-hidden flex flex-col">
             {/* Header Area */}
             <div className="p-6 pb-0 flex items-start justify-between">
                 <div className="flex items-center gap-4">
@@ -28,7 +28,7 @@ const UserCard = ({ user, onToggleStatus, onDelete, onViewDetails }) => {
                         <RoleIcon className={`w-7 h-7 ${user.role === 'admin' ? 'text-purple-600' : user.role === 'manager' ? 'text-blue-600' : 'text-orange-600'}`} />
                     </div>
                     <div>
-                        <h3 className="font-black text-gray-900 uppercase tracking-tight text-sm truncate max-w-[150px]">{user.name}</h3>
+                        <h3 className="font-black text-gray-900 uppercase tracking-tight text-sm break-words">{user.name}</h3>
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-0.5">{roleStyle.label}</p>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ const UserCard = ({ user, onToggleStatus, onDelete, onViewDetails }) => {
                     onClick={() => onToggleStatus(user)}
                     className={`px-2 py-1 rounded-md text-[8px] font-black uppercase transition-all ${isActive ? 'bg-bakery-bg text-bakery-primary hover:bg-bakery-primary hover:text-white' : 'bg-red-50 text-red-600 hover:bg-red-600 hover:text-white'}`}
                 >
-                    {isActive ? 'Active' : 'Banned'}
+                    {isActive ? 'Active' : 'Inactive'}
                 </button>
             </div>
 
@@ -47,7 +47,7 @@ const UserCard = ({ user, onToggleStatus, onDelete, onViewDetails }) => {
                         <div className="p-2 bg-gray-50 rounded-lg">
                             <Mail className="w-3.5 h-3.5 text-gray-400" />
                         </div>
-                        <span className="text-[10px] font-black text-gray-500 lowercase tracking-widest truncate max-w-[180px]">{user.email || 'NO EMAIL'}</span>
+                        <span className="text-[10px] font-black text-gray-500 lowercase tracking-widest break-all min-w-0 flex-1">{user.email || 'NO EMAIL'}</span>
                     </div>
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-gray-50 rounded-lg">

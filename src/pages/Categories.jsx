@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../utils/api';
 import CategoryModal from '../components/CategoryModal';
+import ExportButton from '../components/ExportButton';
 import { useSocket } from '../context/SocketContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
     Plus,
-    Edit,
     Trash2,
     Search,
     ChevronLeft,
     ChevronRight,
     Folder,
-    Eye,
     ArrowRight,
     LayoutGrid,
     RefreshCw
@@ -102,7 +101,8 @@ export default function Categories() {
                     >
                         <RefreshCw className={`w-5 h-5 ${isSyncing ? 'animate-spin text-bakery-primary' : 'text-gray-400'}`} />
                     </button>
-                    <button onClick={() => setShowModal(true)} className="flex items-center gap-2 px-6 py-3 bg-black text-white rounded-2xl text-[10px] font-black uppercase transition-all shadow-lg hover:shadow-black/20">
+                    <ExportButton resource="categories" filters={{ search: searchTerm }} />
+                    <button onClick={() => setShowModal(true)} className="flex items-center gap-2 px-6 py-3 bg-bakery-primary hover:bg-bakery-hover text-white rounded-2xl text-[10px] font-black uppercase transition-all shadow-lg shadow-bakery-primary/25">
                         <Plus className="w-5 h-5" />
                         New Group
                     </button>
@@ -135,12 +135,12 @@ export default function Categories() {
                                     <div className="flex-1">
                                         <h3 className="font-black text-gray-900 uppercase break-words text-sm mb-1">{category.name}</h3>
                                         <p className="text-[10px] text-gray-400 font-bold break-words leading-relaxed">{category.description || 'Global classification group'}</p>
-                                        <p className={`text-[8px] font-black uppercase tracking-widest mt-2 ${category.brand === 'littleh' ? 'text-pink-600' : 'text-bakery-primary'}`}>
+                                        <p className={`text-[8px] font-black uppercase tracking-widest mt-2 ${category.brand === 'littleh' ? 'text-bakery-primary' : 'text-bakery-primary'}`}>
                                             {category.brand === 'littleh' ? 'LITTLEH BAKERY' : 'TEAS N TREES'}
                                         </p>
                                     </div>
                                     <div className="flex gap-2 mt-6">
-                                        <button onClick={() => navigate(`/${urlBrand}/categories/${category._id}`)} className="flex-1 bg-gray-50 text-gray-400 py-3 rounded-2xl text-[10px] font-black uppercase hover:bg-black hover:text-white transition-all">View Products</button>
+                                        <button onClick={() => navigate(`/${urlBrand}/categories/${category._id}`)} className="flex-1 bg-gray-50 text-gray-400 py-3 rounded-2xl text-[10px] font-black uppercase hover:bg-[#B7410E] hover:text-white transition-all">View Products</button>
                                         <button onClick={() => { setEditingCategory(category); setShowModal(true); }} className="flex-1 bg-gray-50 text-gray-400 py-3 rounded-2xl text-[10px] font-black uppercase hover:bg-bakery-primary hover:text-white transition-all">Edit</button>
                                         <button onClick={() => deleteCategory(category._id)} className="px-4 py-3 bg-red-50 text-red-300 rounded-2xl hover:bg-red-600 hover:text-white transition-all"><Trash2 className="w-4 h-4" /></button>
                                     </div>
@@ -173,7 +173,7 @@ export default function Categories() {
                                 key={i + 1}
                                 onClick={() => setPagination(prev => ({ ...prev, currentPage: i + 1 }))}
                                 className={`w-12 h-12 rounded-2xl text-[10px] font-black transition-all ${pagination.currentPage === i + 1
-                                    ? 'bg-black text-white shadow-xl scale-110'
+                                    ? 'bg-[#B7410E] text-white shadow-xl shadow-[#B7410E]/30 scale-110'
                                     : 'bg-white text-gray-400 border border-gray-100 hover:bg-gray-50'
                                     }`}
                             >

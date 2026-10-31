@@ -3,6 +3,7 @@ import { Users, Search, Filter, UserPlus, TrendingUp, UserCheck, UserX, ArrowRig
 import api from '../utils/api';
 import CustomerCard from '../components/CustomerCard';
 import CustomerDetailsModal from '../components/CustomerDetailsModal';
+import ExportButton from '../components/ExportButton';
 import { useSocket } from '../context/SocketContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
@@ -118,22 +119,31 @@ const Customers = () => {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tight">Customers</h1>
+                    <h1 className="text-xl sm:text-2xl font-black text-gray-900 uppercase tracking-tight">Customers</h1>
                     <p className="text-gray-500 mt-1 font-bold">Manage customer accounts</p>
                 </div>
-                <button
-                    onClick={() => {
-                        queryClient.invalidateQueries({ queryKey: ['customers-stats'] });
-                        refetch();
-                    }}
-                    disabled={isSyncing}
-                    className="p-3 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all disabled:opacity-50"
-                >
-                    <RefreshCw className={`w-5 h-5 ${isSyncing ? 'animate-spin text-bakery-primary' : 'text-gray-400'}`} />
-                </button>
+                <div className="flex items-center gap-3">
+                    <ExportButton
+                        resource="customers"
+                        filters={{
+                            search: searchTerm,
+                            status: filterStatus === 'all' ? '' : filterStatus
+                        }}
+                    />
+                    <button
+                        onClick={() => {
+                            queryClient.invalidateQueries({ queryKey: ['customers-stats'] });
+                            refetch();
+                        }}
+                        disabled={isSyncing}
+                        className="p-3 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all disabled:opacity-50"
+                    >
+                        <RefreshCw className={`w-5 h-5 ${isSyncing ? 'animate-spin text-bakery-primary' : 'text-gray-400'}`} />
+                    </button>
+                </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <StatCard label="Total Customers" value={stats?.totalCustomers || 0} icon={Users} theme="blue" desc="All customers" loading={statsLoading} />
                 <StatCard label="Active Accounts" value={stats?.activeCustomers || 0} icon={UserCheck} theme="green" desc="Can order" loading={statsLoading} />
                 <StatCard label="With Orders" value={stats?.customersWithOrders || 0} icon={TrendingUp} theme="purple" desc="Ordered at least once" loading={statsLoading} />
@@ -156,7 +166,7 @@ const Customers = () => {
 
             <div className="min-h-[400px]">
                 {customers.length > 0 ? (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
                         {customers.map((customer) => (
                             <CustomerCard key={customer._id} customer={customer} onViewDetails={handleViewDetails} onToggleStatus={handleToggleStatus} onDelete={handleDelete} />
                         ))}
@@ -173,7 +183,7 @@ const Customers = () => {
                 <div className="flex items-center justify-center gap-2 py-8">
                     <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-6 py-3 bg-white border border-gray-100 rounded-2xl text-xs font-black uppercase disabled:opacity-30">Prev</button>
                     <span className="font-black text-gray-400 uppercase tracking-tighter">Page {page} / {paginationInfo.totalPages}</span>
-                    <button onClick={() => setPage(p => Math.min(paginationInfo.totalPages, p + 1))} disabled={page === paginationInfo.totalPages} className="px-6 py-3 bg-black text-white rounded-2xl text-xs font-black uppercase disabled:opacity-30">Next</button>
+                    <button onClick={() => setPage(p => Math.min(paginationInfo.totalPages, p + 1))} disabled={page === paginationInfo.totalPages} className="px-6 py-3 bg-[#B7410E] hover:bg-[#943209] text-white rounded-2xl text-xs font-black uppercase shadow-lg shadow-[#B7410E]/20 disabled:opacity-30">Next</button>
                 </div>
             )}
 
@@ -195,20 +205,24 @@ const StatCard = ({ label, value, icon: Icon, theme, desc, loading }) => {
     const style = themes[theme] || themes.blue;
     const [gradientFrom, gradientTo, shadow, textColor, bgColor] = style.split(' ');
     return (
-        <div className="relative overflow-hidden bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
-            <div className="relative flex items-center justify-between">
-                <div className="space-y-1">
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">{label}</p>
-                    <h3 className={`text-3xl font-black text-gray-900 tracking-tight ${loading ? 'animate-pulse opacity-50' : ''}`}>{value}</h3>
-                    <div className={`flex items-center gap-1.5 py-1 px-2 ${bgColor} rounded-lg w-fit`}>
-                        <ArrowRight className={`w-3 h-3 ${textColor}`} />
-                        <span className={`text-[10px] font-black uppercase ${textColor}`}>{desc}</span>
-                    </div>
+        <div className="relative overflow-hidden bg-white p-4 sm:p-5 rounded-[1.5rem] border border-gray-100 shadow-sm flex flex-col justify-between">
+            <div className="flex items-start justify-between gap-2.5">
+                <div className="space-y-1 min-w-0 flex-1">
+                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">{label}</p>
+                    <h3 className={`text-xl sm:text-2xl font-black text-gray-900 tracking-tight leading-none ${loading ? 'animate-pulse opacity-50' : ''}`}>{value}</h3>
                 </div>
-                <div className={`p-4 rounded-2xl bg-gradient-to-br ${gradientFrom} ${gradientTo} text-white shadow-lg ${shadow} transform group-hover:rotate-12 transition-all`}>
-                    <Icon className="w-7 h-7" />
+                <div className={`p-3 rounded-xl bg-gradient-to-br ${gradientFrom} ${gradientTo} text-white shadow-md ${shadow} shrink-0`}>
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
             </div>
+            {desc && (
+                <div className="mt-3">
+                    <div className={`inline-flex items-center gap-1 py-0.5 px-2.5 ${bgColor} rounded-full text-[8px] sm:text-[9px] font-black uppercase tracking-tight ${textColor}`}>
+                        <ArrowRight className="w-2.5 h-2.5 shrink-0" />
+                        <span className="leading-tight">{desc}</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

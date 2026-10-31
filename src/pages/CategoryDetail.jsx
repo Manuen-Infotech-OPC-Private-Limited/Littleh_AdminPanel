@@ -97,7 +97,7 @@ export default function CategoryDetail() {
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => setShowModal(true)}
-                        className="px-6 py-3 bg-black text-white rounded-2xl text-[10px] font-black uppercase hover:bg-gray-900 transition-all flex items-center gap-2 shadow-lg"
+                        className="px-6 py-3 bg-[#B7410E] hover:bg-[#943209] text-white rounded-2xl text-[10px] font-black uppercase transition-all flex items-center gap-2 shadow-lg shadow-[#B7410E]/20"
                     >
                         <Edit className="w-4 h-4" />
                         Edit Group

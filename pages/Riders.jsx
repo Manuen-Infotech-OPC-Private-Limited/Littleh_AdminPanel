@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Bike, Users, Clock, TrendingUp, Search, Filter, ArrowRight, User, RefreshCw } from 'lucide-react';
 import RiderCard from '../components/RiderCard';
 import RiderDetailsModal from '../components/RiderDetailsModal';
+import ExportButton from '../components/ExportButton';
 import api from '../utils/api';
 import { useSocket } from '../context/SocketContext';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -166,23 +167,31 @@ export default function Riders() {
         <div className="space-y-6 text-gray-900">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-black uppercase tracking-tight">Riders</h1>
+                    <h1 className="text-xl sm:text-2xl font-black uppercase tracking-tight">Riders</h1>
                     <p className="text-gray-500 mt-1 font-bold">Manage riders and applications</p>
                 </div>
-                <button
-                    onClick={() => {
-                        queryClient.invalidateQueries({ queryKey: ['riders-stats'] });
-                        ridersRefetch();
-                        pendingRefetch();
-                    }}
-                    disabled={ridersFetching || pendingFetching}
-                    className="p-3 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all disabled:opacity-50"
-                >
-                    <RefreshCw className={`w-5 h-5 ${(ridersFetching || pendingFetching) ? 'animate-spin text-bakery-primary' : 'text-gray-400'}`} />
-                </button>
+                <div className="flex items-center gap-3">
+                    <ExportButton
+                        resource="riders"
+                        filters={{
+                            status: filters.status
+                        }}
+                    />
+                    <button
+                        onClick={() => {
+                            queryClient.invalidateQueries({ queryKey: ['riders-stats'] });
+                            ridersRefetch();
+                            pendingRefetch();
+                        }}
+                        disabled={ridersFetching || pendingFetching}
+                        className="p-3 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all disabled:opacity-50"
+                    >
+                        <RefreshCw className={`w-5 h-5 ${(ridersFetching || pendingFetching) ? 'animate-spin text-bakery-primary' : 'text-gray-400'}`} />
+                    </button>
+                </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <StatCard label="Total Riders" value={statsData?.totalRiders || 0} icon={Users} theme="bakery" desc="All riders" loading={statsLoading} />
                 <StatCard label="Online Now" value={statsData?.activeRiders || 0} icon={Bike} theme="bakery" desc="Currently online" loading={statsLoading} />
                 <StatCard label="New Applications" value={statsData?.pendingApprovals || 0} icon={Clock} theme="orange" desc="Need approval" loading={statsLoading} />
@@ -191,7 +200,7 @@ export default function Riders() {
 
             <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
                 <div className="flex border-b border-gray-100 bg-gray-50/30">
-                    <button onClick={() => setActiveTab('all')} className={`flex-1 px-8 py-6 font-black uppercase text-[10px] tracking-[0.2em] transition-all ${activeTab === 'all' ? 'text-bakery-primary bg-white border-b-2 border-bakery-primary' : 'text-gray-400 hover:text-bakery-primary'}`}>All Fleet ({ridersData?.length || 0})</button>
+                    <button onClick={() => setActiveTab('all')} className={`flex-1 px-8 py-6 font-black uppercase text-[10px] tracking-[0.2em] transition-all ${activeTab === 'all' ? 'text-bakery-primary bg-white border-b-2 border-bakery-primary' : 'text-gray-400 hover:text-bakery-primary'}`}>All Riders ({ridersData?.length || 0})</button>
                     <button onClick={() => setActiveTab('pending')} className={`flex-1 px-8 py-6 font-black uppercase text-[10px] tracking-[0.2em] transition-all relative ${activeTab === 'pending' ? 'text-orange-600 bg-white border-b-2 border-orange-600' : 'text-gray-400 hover:text-orange-500'}`}>Approvals {pendingRiders.length > 0 && <span className="ml-2 px-2 py-1 bg-orange-100 text-orange-600 rounded-lg text-[10px]">{pendingRiders.length}</span>}</button>
                 </div>
 
@@ -203,9 +212,9 @@ export default function Riders() {
                                 <input type="text" placeholder="Search by name, mobile or vehicle..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-gray-50 border-none rounded-2xl py-4 pl-12 pr-4 text-sm font-black uppercase tracking-widest placeholder:text-gray-300 focus:ring-2 focus:ring-bakery-primary" />
                             </div>
                             <select value={filters.status} onChange={(e) => setFilters({ ...filters, status: e.target.value })} className="bg-gray-50 border-none rounded-2xl px-6 py-4 md:w-56 text-[10px] font-black uppercase tracking-widest focus:ring-2 focus:ring-bakery-primary">
-                                <option value="">Fleet Status</option>
+                                <option value="">Rider Status</option>
                                 <option value="active">Active</option>
-                                <option value="inactive">Banned</option>
+                                <option value="inactive">Inactive</option>
                                 <option value="online">Online</option>
                                 <option value="onDelivery">On Job</option>
                             </select>
@@ -217,7 +226,7 @@ export default function Riders() {
 
             <div className="min-h-[400px]">
                 {displayRiders.length > 0 ? (
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6">
                         {displayRiders.map((rider) => (
                             <RiderCard
                                 key={rider._id}
@@ -269,20 +278,24 @@ const StatCard = ({ label, value, icon: Icon, theme, desc, loading }) => {
     const style = themes[theme] || themes.bakery;
     const [gradientFrom, gradientTo, shadow, textColor, bgColor] = style.split(' ');
     return (
-        <div className="relative overflow-hidden bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
-            <div className="relative flex items-center justify-between">
-                <div className="space-y-1">
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">{label}</p>
-                    <h3 className={`text-3xl font-black text-gray-900 tracking-tight ${loading ? 'animate-pulse opacity-50' : ''}`}>{value}</h3>
-                    <div className={`flex items-center gap-1.5 py-1 px-2 ${bgColor} rounded-lg w-fit`}>
-                        <ArrowRight className={`w-3 h-3 ${textColor}`} />
-                        <span className={`text-[10px] font-black uppercase ${textColor}`}>{desc}</span>
-                    </div>
+        <div className="relative overflow-hidden bg-white p-4 sm:p-5 rounded-[1.5rem] border border-gray-100 shadow-sm flex flex-col justify-between">
+            <div className="flex items-start justify-between gap-2.5">
+                <div className="space-y-1 min-w-0 flex-1">
+                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">{label}</p>
+                    <h3 className={`text-xl sm:text-2xl font-black text-gray-900 tracking-tight leading-none ${loading ? 'animate-pulse opacity-50' : ''}`}>{value}</h3>
                 </div>
-                <div className={`p-4 rounded-2xl bg-gradient-to-br ${gradientFrom} ${gradientTo} text-white shadow-lg ${shadow} transform group-hover:rotate-12 transition-all`}>
-                    <Icon className="w-7 h-7" />
+                <div className={`p-3 rounded-xl bg-gradient-to-br ${gradientFrom} ${gradientTo} text-white shadow-md ${shadow} shrink-0`}>
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
             </div>
+            {desc && (
+                <div className="mt-3">
+                    <div className={`inline-flex items-center gap-1 py-0.5 px-2.5 ${bgColor} rounded-full text-[8px] sm:text-[9px] font-black uppercase tracking-tight ${textColor}`}>
+                        <ArrowRight className="w-2.5 h-2.5 shrink-0" />
+                        <span className="leading-tight">{desc}</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

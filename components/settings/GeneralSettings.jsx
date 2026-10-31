@@ -138,14 +138,14 @@ const GeneralSettings = () => {
             {/* Storefront Visibility & Ordering Toggle */}
             <div className={`rounded-[2.5rem] p-8 border transition-all duration-300 ${
                 isLittleHActive 
-                    ? 'bg-gradient-to-r from-emerald-50/70 to-teal-50/70 border-emerald-200 shadow-sm' 
+                    ? 'bg-gradient-to-r from-[#FDF6F3] to-[#FBEAE2] border-[#F7D5C5] shadow-sm' 
                     : 'bg-gradient-to-r from-rose-50/70 to-amber-50/70 border-rose-200 shadow-sm'
             }`}>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                     <div className="flex items-center gap-5">
                         <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border shadow-sm transition-colors ${
                             isLittleHActive
-                                ? 'bg-emerald-500 text-white border-emerald-400 shadow-emerald-500/20'
+                                ? 'bg-[#B7410E] text-white border-[#B7410E] shadow-[#B7410E]/20'
                                 : 'bg-rose-500 text-white border-rose-400 shadow-rose-500/20'
                         }`}>
                             <Power className="w-7 h-7" />
@@ -157,7 +157,7 @@ const GeneralSettings = () => {
                                 </h2>
                                 <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider ${
                                     isLittleHActive
-                                        ? 'bg-emerald-100 text-emerald-800'
+                                        ? 'bg-[#FBEAE2] text-[#742709]'
                                         : 'bg-rose-100 text-rose-800'
                                 }`}>
                                     {isLittleHActive ? '🟢 ONLINE & ACTIVE' : '🔴 OFFLINE / HIDDEN'}
@@ -165,8 +165,8 @@ const GeneralSettings = () => {
                             </div>
                             <p className="text-xs font-medium text-gray-600 mt-1 max-w-xl">
                                 {isLittleHActive
-                                    ? 'Little H is visible to customers on the customer app and accepting orders.'
-                                    : 'Little H is turned OFF and hidden from the customer app. Any customer visiting /littleh will be automatically redirected to Teas N Trees.'}
+                                    ? 'Cream N Crust is visible to customers on the customer app and accepting orders.'
+                                    : 'Cream N Crust is turned OFF and hidden from the customer app. Any customer visiting /littleh will be automatically redirected to Teas N Trees.'}
                             </p>
                         </div>
                     </div>
@@ -177,11 +177,11 @@ const GeneralSettings = () => {
                         onClick={handleToggleStoreStatus}
                         className={`relative inline-flex h-11 w-20 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                             isLittleHActive 
-                                ? 'bg-emerald-600 focus:ring-emerald-500' 
+                                ? 'bg-[#B7410E] focus:ring-[#B7410E]' 
                                 : 'bg-gray-300 focus:ring-gray-400'
                         } ${togglingStatus ? 'opacity-60 cursor-not-allowed' : ''}`}
                     >
-                        <span className="sr-only">Toggle Little H Storefront</span>
+                        <span className="sr-only">Toggle Cream N Crust storefront</span>
                         <span
                             aria-hidden="true"
                             className={`pointer-events-none inline-block h-10 w-10 transform rounded-full bg-white shadow-md ring-0 transition duration-300 ease-in-out ${
@@ -194,18 +194,18 @@ const GeneralSettings = () => {
 
             {/* Store Information */}
             <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
-                <div className="px-10 py-8 border-b border-gray-50 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm">
-                            <Building className="w-6 h-6 text-bakery-primary" />
+                <div className="px-6 py-5 border-b border-gray-50 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-100 shadow-sm">
+                            <Building className="w-4 h-4 text-bakery-primary" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Store Info</h2>
+                            <h2 className="text-sm font-black text-gray-900 uppercase tracking-tight">Store Info</h2>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Basic Details</p>
                         </div>
                     </div>
                 </div>
-                <div className="p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="col-span-2 space-y-2">
                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] px-2">Store Address</label>
                         <textarea
@@ -247,18 +247,18 @@ const GeneralSettings = () => {
 
             {/* Fees & Taxes */}
             <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
-                <div className="px-10 py-8 border-b border-gray-50 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm">
-                            <DollarSign className="w-6 h-6 text-bakery-primary" />
+                <div className="px-6 py-5 border-b border-gray-50 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-100 shadow-sm">
+                            <DollarSign className="w-4 h-4 text-bakery-primary" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Taxes & Fees</h2>
+                            <h2 className="text-sm font-black text-gray-900 uppercase tracking-tight">Taxes & Fees</h2>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Charges & Rates</p>
                         </div>
                     </div>
                 </div>
-                <div className="p-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div className="space-y-2">
                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] px-2">Delivery Fee (₹)</label>
                         <input
@@ -304,18 +304,18 @@ const GeneralSettings = () => {
 
             {/* Rider Earnings */}
             <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
-                <div className="px-10 py-8 border-b border-gray-50 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm">
-                            <Bike className="w-6 h-6 text-bakery-primary" />
+                <div className="px-6 py-5 border-b border-gray-50 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-100 shadow-sm">
+                            <Bike className="w-4 h-4 text-bakery-primary" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Rider Earnings</h2>
+                            <h2 className="text-sm font-black text-gray-900 uppercase tracking-tight">Rider Earnings</h2>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Pay Structure</p>
                         </div>
                     </div>
                 </div>
-                <div className="p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] px-2">Base Pay (₹)</label>
                         <input
@@ -341,18 +341,18 @@ const GeneralSettings = () => {
 
             {/* Operating Hours */}
             <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
-                <div className="px-10 py-8 border-b border-gray-50 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm">
-                            <Clock className="w-6 h-6 text-bakery-primary" />
+                <div className="px-6 py-5 border-b border-gray-50 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-100 shadow-sm">
+                            <Clock className="w-4 h-4 text-bakery-primary" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Opening Hours</h2>
+                            <h2 className="text-sm font-black text-gray-900 uppercase tracking-tight">Opening Hours</h2>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Store Schedule</p>
                         </div>
                     </div>
                 </div>
-                <div className="p-10">
+                <div className="p-6">
                     <div className="space-y-4">
                         {Object.entries(settings.operatingHours || {}).map(([day, hours]) => (
                             <div key={day} className="flex items-center gap-6 p-4 rounded-2xl hover:bg-gray-50 transition-colors group">

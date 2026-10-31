@@ -7,7 +7,7 @@ export default function RiderCard({ rider, onViewDetails, onApprove, onReject, o
     };
 
     return (
-        <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all group">
+        <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
             {/* Header Area */}
             <div className="p-6 pb-0 flex items-start justify-between">
                 <div className="flex items-center gap-4">
@@ -15,8 +15,13 @@ export default function RiderCard({ rider, onViewDetails, onApprove, onReject, o
                         <Bike className="w-7 h-7 text-bakery-primary" />
                     </div>
                     <div>
-                        <h3 className="font-black text-gray-900 uppercase tracking-tight text-sm truncate max-w-[150px]">{rider.name}</h3>
+                        <h3 className="font-black text-gray-900 uppercase tracking-tight text-sm break-words">{rider.name}</h3>
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-0.5">{rider.mobile}</p>
+                        {rider.pinResetAt && (
+                            <p className="text-[9px] font-black text-amber-600 uppercase tracking-widest mt-0.5" title={`Reset by the rider from the app${rider.pinResetCount > 1 ? ` (${rider.pinResetCount} times)` : ''}`}>
+                                PIN reset {new Date(rider.pinResetAt).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' })}
+                            </p>
+                        )}
                     </div>
                 </div>
                 {!isPending && (
@@ -25,7 +30,7 @@ export default function RiderCard({ rider, onViewDetails, onApprove, onReject, o
                             {rider.isOnline ? 'Active' : 'Offline'}
                         </span>
                         <span className={`px-2 py-0.5 rounded-md text-[8px] font-black uppercase ${rider.isActive ? 'bg-blue-50 text-blue-600' : 'bg-red-50 text-red-600'}`}>
-                            {rider.isActive ? 'Live' : 'Banned'}
+                            {rider.isActive ? 'Live' : 'Inactive'}
                         </span>
                     </div>
                 )}

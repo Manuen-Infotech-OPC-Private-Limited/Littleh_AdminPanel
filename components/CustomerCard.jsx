@@ -19,7 +19,7 @@ const CustomerCard = ({ customer, onViewDetails, onToggleStatus, onDelete }) => 
     };
 
     return (
-        <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all group p-6">
+        <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden p-6">
             {/* Header Area */}
             <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center gap-4">
@@ -27,13 +27,13 @@ const CustomerCard = ({ customer, onViewDetails, onToggleStatus, onDelete }) => 
                         <User className="w-7 h-7 text-blue-600" />
                     </div>
                     <div>
-                        <h3 className="font-black text-gray-900 uppercase tracking-tight text-sm truncate max-w-[150px]">{customer.name || 'Anonymous'}</h3>
+                        <h3 className="font-black text-gray-900 uppercase tracking-tight text-sm break-words">{customer.name || 'Anonymous'}</h3>
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Joined {formatDate(customer.createdAt)}</p>
                     </div>
                 </div>
                 <div className="flex flex-col gap-1.5 items-end">
                     <span className={`px-2 py-1 rounded-md text-[8px] font-black uppercase ${customer.isActive ? 'bg-bakery-bg text-bakery-primary' : 'bg-red-50 text-red-600'}`}>
-                        {customer.isActive ? 'Active' : 'Banned'}
+                        {customer.isActive ? 'Active' : 'Inactive'}
                     </span>
                 </div>
             </div>
@@ -51,7 +51,7 @@ const CustomerCard = ({ customer, onViewDetails, onToggleStatus, onDelete }) => 
                         <div className="p-2 bg-gray-50 rounded-lg">
                             <Mail className="w-3.5 h-3.5 text-gray-400" />
                         </div>
-                        <span className="text-[10px] font-black text-gray-500 lowercase tracking-widest truncate max-w-[180px]">{customer.email}</span>
+                        <span className="text-[10px] font-black text-gray-500 lowercase tracking-widest break-all min-w-0 flex-1">{customer.email}</span>
                     </div>
                 )}
             </div>
