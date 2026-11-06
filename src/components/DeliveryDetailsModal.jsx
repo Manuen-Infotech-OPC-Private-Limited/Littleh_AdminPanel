@@ -128,7 +128,7 @@ const DeliveryDetailsModal = ({ isOpen, onClose, delivery }) => {
     });
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bakery-primary/40 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
             <div className="bg-white rounded-[2.5rem] w-full max-w-5xl overflow-hidden shadow-2xl border border-gray-100 flex flex-col max-h-[90vh]">
                 {/* Header */}
                 <div className="p-8 border-b border-gray-50 bg-white flex items-center justify-between z-10">

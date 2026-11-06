@@ -70,7 +70,7 @@ export default function CategoryModal({ isOpen, onClose, category, onSuccess }) 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-bakery-primary/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-md border border-gray-100">
                 {/* Header */}
                 <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-gray-50 p-8 flex items-center justify-between z-10">
